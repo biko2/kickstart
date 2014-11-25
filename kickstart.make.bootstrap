@@ -1,0 +1,4 @@
+projects[kickstart][type] = "profile"
+projects[kickstart][download][type] = "git"
+projects[kickstart][download][url] = "https://github.com/biko2/kickstart.git"
+projects[kickstart][download][branch] = "master"

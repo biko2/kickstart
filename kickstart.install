@@ -1,0 +1,355 @@
+<?php
+!function_exists('profiler_v2') ? require_once('libraries/profiler/profiler.inc') : FALSE;
+profiler_v2('kickstart');
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ */
+function kickstart_install() {
+  _kickstart_add_text_formats();
+  // Enable some kickstart blocks.
+  $default_theme = 'bootstrap';
+  $admin_theme = 'seven';
+  // disable all themes
+  db_update('system')
+    ->fields(array('status' => 0))
+    ->condition('type', 'theme')
+    ->execute();
+  // enable $default_theme
+  db_update('system')
+    ->fields(array('status' => 1))
+    ->condition('type', 'theme')
+    ->condition('name', $default_theme)
+    ->execute();
+  // enable $admin_theme
+  db_update('system')
+    ->fields(array('status' => 1))
+    ->condition('type', 'theme')
+    ->condition('name', $admin_theme)
+    ->execute();
+  variable_set('theme_default', $default_theme);
+  variable_set('admin_theme', $admin_theme);
+  // activate admin theme when editing a node
+  variable_set('node_admin_theme', '1');
+  $blocks = array(
+    array(
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'content',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'user',
+      'delta' => 'login',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'sidebar_first',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'system',
+      'delta' => 'help',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -10,
+      'region' => 'content',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => $admin_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'content',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'system',
+      'delta' => 'help',
+      'theme' => $admin_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'help',
+      'pages' => '',
+      'cache' => -1,
+    ),
+  );
+  // drop system / user blocks to ensure correct building
+  db_delete('block')->condition('module', 'system')->execute();
+  db_delete('block')->condition('module', 'user')->execute();
+  // add in our blocks defined above
+  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
+  foreach ($blocks as $block) {
+    $query->values($block);
+  }
+  $query->execute();
+
+  // From shortcut.install, add shortcuts to the default set on install
+  $shortcut_set = shortcut_set_load(SHORTCUT_DEFAULT_SET_NAME);
+  $shortcut_set->links = NULL;
+  $shortcut_set->links = array(
+    array(
+      'link_path' => 'admin/appearance/settings',
+      'link_title' => st('Theme'),
+      'weight' => -17,
+    ),
+  );
+  shortcut_set_save($shortcut_set);// Create a default role for site administrators, with all available permissions assigned.
+  $admin_role = new stdClass();
+  $admin_role->name = 'administrator';
+  $admin_role->weight = 10;
+  user_role_save($admin_role);
+  user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
+  // Set this as the administrator role.
+  variable_set('user_admin_role', $admin_role->rid);
+
+  // Assign user 1 the "administrator" role.
+  db_insert('users_roles')
+    ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
+    ->execute();
+  // Update the menu router information.
+  menu_rebuild();
+  // revert features to ensure they are all installed
+  $features = array(
+    ''
+  );
+  features_revert($features);
+  // ignore any rebuild messages
+  node_access_needs_rebuild(FALSE);
+  // ignore any other install messages
+  drupal_get_messages();
+}
+
+function _kickstart_add_text_formats() {
+    // Add text formats.
+    $filtered_html_format = array(
+      'format' => 'filtered_html',
+      'name' => 'Filtered HTML',
+      'weight' => 0,
+      'filters' => array(
+        // URL filter.
+        'filter_url' => array(
+          'weight' => 0,
+          'status' => 1,
+        ),
+        // HTML filter.
+        'filter_html' => array(
+          'weight' => 1,
+          'status' => 1,
+          'settings' => array(
+            'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <h1> <h2> <h3> <h4> <h5> <p> <span> <div> <img>'
+
+          ),
+        ),
+        // Line break filter.
+        'filter_autop' => array(
+          'weight' => 2,
+          'status' => 1,
+        ),
+        // HTML corrector filter.
+        'filter_htmlcorrector' => array(
+          'weight' => 10,
+          'status' => 1,
+        ),
+        'pathologic' => array(
+          'weight' => 15,
+          'status' => 1,
+        ),
+      ),
+    );
+    $filtered_html_format = (object) $filtered_html_format;
+    filter_format_save($filtered_html_format);
+
+    $full_html_format = array(
+      'format' => 'full_html',
+      'name' => 'Full HTML',
+      'weight' => 1,
+      'filters' => array(
+        // URL filter.
+        'filter_url' => array(
+          'weight' => 0,
+          'status' => 1,
+        ),
+        // Line break filter.
+        'filter_autop' => array(
+          'weight' => 1,
+          'status' => 1,
+        ),
+        // HTML corrector filter.
+        'filter_htmlcorrector' => array(
+          'weight' => 10,
+          'status' => 1,
+        ),
+        'pathologic' => array(
+          'weight' => 15,
+          'status' => 1,
+        ),
+      ),
+    );
+    $full_html_format = (object) $full_html_format;
+    filter_format_save($full_html_format);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function kickstart_form_install_configure_form_alter(&$form, $form_state) {
+  // Site information.
+  $form['site_information']['site_name']['#default_value'] = $_SERVER['SERVER_NAME'];
+
+  // Admin account.
+  $form['admin_account']['account']['name']['#default_value'] = 'admin';
+
+  // Server settings.
+  $form['server_settings']['site_default_country']['#default_value'] = 'ES';
+  $form['server_settings']['date_default_timezone']['#default_value'] = 'Europe/Madrid';
+  unset($form['server_settings']['date_default_timezone']['#attributes']);
+  // Update notifications.
+  $form['update_notifications']['update_status_module']['#default_value'] = array(1, 2);
+
+    //clean messages
+    drupal_get_messages();
+  }
+
+
+function kickstart_profile_details() {
+  $details['language'] = "es";
+  return $details;
+}
+
+/**
+ * Implements hook_install_tasks_alter().
+ */
+function kickstart_install_tasks_alter(&$tasks, $install_state) {
+
+  unset($tasks['install_import_locales']);
+  unset($tasks['install_import_locales_remaining']);
+
+
+  $tasks['install_finished']['function'] = '_kickstart_install_finished';
+
+  $tasks['install_select_profile']['display'] = FALSE;
+  $tasks['install_select_locale']['display'] = FALSE;
+  $tasks['install_finished']['display'] = FALSE;
+  $tasks['install_select_locale']['type'] = 'normal';
+
+  // // The "Welcome" screen needs to come after the first two steps
+  // // (profile and language selection), despite the fact that they are disabled.
+  // $new_task['install_welcome'] = array(
+  //   'display' => TRUE,
+  //   'display_name' => st('Welcome'),
+  //   'type' => 'form',
+  //   'run' => isset($install_state['parameters']['welcome']) ? INSTALL_TASK_SKIP : INSTALL_TASK_RUN_IF_REACHED,
+  // );
+  // $old_tasks = $tasks;
+  // $tasks = array_slice($old_tasks, 0, 2) + $new_task + array_slice($old_tasks, 2);
+
+
+  $needs_translations = count($install_state['locales']) > 1 && !empty($install_state['parameters']['locale']) && $install_state['parameters']['locale'] != 'en';
+
+  $new_task['_kickstart_import_translation'] = array(
+    'display_name' => st('Set up translations'),
+    'display' => $needs_translations,
+    'run' => $needs_translations ? INSTALL_TASK_RUN_IF_NOT_COMPLETED : INSTALL_TASK_SKIP,
+    'type' => 'batch',
+  );
+
+  $old_tasks = $tasks;
+  $tasks = array_slice($old_tasks, 0, 9) + $new_task + array_slice($old_tasks, 9);
+}
+
+/**
+ * Custom installation task; perform final steps and redirect the user to the new site if there are no errors.
+ *
+ * @param $install_state
+ *   An array of information about the current installation state.
+ *
+ * @return
+ *   A message informing the user about errors if there was some.
+ */
+function _kickstart_install_finished(&$install_state) {
+  drupal_set_title(st('@drupal installation complete', array('@drupal' => drupal_install_profile_distribution_name())), PASS_THROUGH);
+  $messages = drupal_set_message();
+
+  // Remember the profile which was used.
+  variable_set('install_profile', drupal_get_profile());
+  variable_set('install_task', 'done');
+
+  // Flush all caches to ensure that any full bootstraps during the installer
+  // do not leave stale cached data, and that any content types or other items
+  // registered by the install profile are registered correctly.
+  drupal_flush_all_caches();
+
+  // Install profiles are always loaded last
+  db_update('system')
+      ->fields(array('weight' => 1000))
+      ->condition('type', 'module')
+      ->condition('name', drupal_get_profile())
+      ->execute();
+
+  // Cache a fully-built schema.
+  drupal_get_schema(NULL, TRUE);
+
+  // Run cron to populate update status tables (if available) so that users
+  // will be warned if they've installed an out of date Drupal version.
+  // Will also trigger indexing of profile-supplied content or feeds.
+  drupal_cron_run();
+
+  if (isset($messages['error'])) {
+    $output = '<p>' . (isset($messages['error']) ? st('Review the messages above before visiting <a href="@url">your new site</a>.', array('@url' => url(''))) : st('<a href="@url">Visit your new site</a>.', array('@url' => url('')))) . '</p>';
+    return $output;
+  } else {
+    // Since any module can add a drupal_set_message, this can bug the user
+    // when we redirect him to the front page. For a better user experience,
+    // remove all the message that are only "notifications" message.
+    drupal_get_messages('status', TRUE);
+    drupal_get_messages('completed', TRUE);
+    // Migrate adds its messages under the wrong type, see #1659150.
+    drupal_get_messages('ok', TRUE);
+
+    drupal_set_message(st('@drupal installation complete', array('@drupal' => drupal_install_profile_distribution_name()
+            )
+        ));
+
+    // If we don't install drupal using Drush, redirect the user to the front
+    // page.
+    if (!drupal_is_cli()) {
+      drupal_goto('');
+    }
+  }
+}
+
+/**
+ * Installation step callback.
+ *
+ * @param $install_state
+ *   An array of information about the current installation state.
+ */
+function _kickstart_import_translation(&$install_state) {
+  // Enable installation language as default site language.
+  include_once DRUPAL_ROOT . '/includes/locale.inc';
+  $install_locale = $install_state['parameters']['locale'];
+  locale_add_language($install_locale, NULL, NULL, NULL, '', NULL, 1, TRUE);
+
+  // Build batch with l10n_update module.
+  $history = l10n_update_get_history();
+  module_load_include('check.inc', 'l10n_update');
+  $available = l10n_update_available_releases();
+  $updates = l10n_update_build_updates($history, $available);
+
+  module_load_include('batch.inc', 'l10n_update');
+  $updates = _l10n_update_prepare_updates($updates, NULL, array());
+  $batch = l10n_update_batch_multiple($updates, LOCALE_IMPORT_KEEP);
+  return $batch;
+}

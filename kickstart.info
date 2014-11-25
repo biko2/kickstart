@@ -1,0 +1,307 @@
+; Packaging information for kickstart
+name = "kickstart"
+description = ""
+exclusive = "1"
+core = "7.x"
+; ----------
+; Dependencias
+; ----------
+; Administration
+dependencies[] = admin_menu
+dependencies[] = admin_menu_toolbar
+dependencies[] = module_filter
+; Chaos tool suite
+dependencies[] = ctools
+; Core
+dependencies[] = block
+dependencies[] = contextual
+dependencies[] = dashboard
+dependencies[] = dblog
+dependencies[] = field
+dependencies[] = field_sql_storage
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = filter
+dependencies[] = help
+dependencies[] = image
+dependencies[] = list
+dependencies[] = locale
+dependencies[] = menu
+dependencies[] = node
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = shortcut
+dependencies[] = system
+dependencies[] = taxonomy
+dependencies[] = text
+dependencies[] = update
+dependencies[] = user
+; Development
+dependencies[] = profiler_builder
+; Fields
+dependencies[] = entityreference
+dependencies[] = fences
+dependencies[] = field_group
+dependencies[] = link
+; Input filters
+dependencies[] = pathologic
+; Media
+dependencies[] = imce
+; Multilingual
+dependencies[] = l10n_update
+; Other
+dependencies[] = block_class
+dependencies[] = clone
+dependencies[] = diff
+dependencies[] = entity
+dependencies[] = entity_token
+dependencies[] = eu_cookie_compliance
+dependencies[] = libraries
+dependencies[] = menu_attributes
+dependencies[] = pathauto
+dependencies[] = pathauto_persist
+dependencies[] = redirect
+dependencies[] = simplehtmldom
+dependencies[] = strongarm
+dependencies[] = token
+dependencies[] = transliteration
+; Path management
+dependencies[] = globalredirect
+; SEO
+dependencies[] = metatag
+dependencies[] = page_title
+; Statistics
+dependencies[] = googleanalytics
+; User interface
+dependencies[] = ckeditor
+dependencies[] = jquery_update
+dependencies[] = simplify
+; Views
+dependencies[] = views
+dependencies[] = views_bulk_operations
+dependencies[] = views_ui
+; Features
+dependencies[] = features
+
+; ----------
+; Variables
+; ----------
+variables[admin_menu_cache_client] = 1
+variables[admin_menu_components][admin_menu.icon] = true
+variables[admin_menu_components][admin_menu.menu] = true
+variables[admin_menu_components][admin_menu.search] = true
+variables[admin_menu_components][admin_menu.users] = true
+variables[admin_menu_components][admin_menu.account] = true
+variables[admin_menu_components][shortcut.links] = false
+variables[admin_menu_devel_modules_skip][admin_devel] = 0
+variables[admin_menu_devel_modules_skip][context_ui] = 0
+variables[admin_menu_devel_modules_skip][devel] = 0
+variables[admin_menu_devel_modules_skip][devel_node_access] = 0
+variables[admin_menu_devel_modules_skip][devel_themer] = 0
+variables[admin_menu_devel_modules_skip][field_ui] = 0
+variables[admin_menu_devel_modules_skip][l10n_update] = 0
+variables[admin_menu_devel_modules_skip][views_ui] = 0
+variables[admin_menu_margin_top] = 1
+variables[admin_menu_position_fixed] = 1
+variables[admin_theme] = 'seven'
+variables[advanced__active_tab] = 'edit-performance'
+variables[anonymous] = 'Anónimo'
+variables[configurable_timezones] = 0
+variables[date_default_timezone] = 'Europe/Madrid'
+variables[date_first_day] = '1'
+variables[date_format_long] = 'l, j F, Y - H:i'
+variables[date_format_medium] = 'D, d/m/Y - H:i'
+variables[date_format_short] = 'd/m/Y - H:i'
+variables[entityreference:base-tables][node][0] = 'node'
+variables[entityreference:base-tables][node][1] = 'nid'
+variables[entityreference:base-tables][redirect][0] = 'redirect'
+variables[entityreference:base-tables][redirect][1] = 'rid'
+variables[entityreference:base-tables][file][0] = 'file_managed'
+variables[entityreference:base-tables][file][1] = 'fid'
+variables[entityreference:base-tables][taxonomy_term][0] = 'taxonomy_term_data'
+variables[entityreference:base-tables][taxonomy_term][1] = 'tid'
+variables[entityreference:base-tables][taxonomy_vocabulary][0] = 'taxonomy_vocabulary'
+variables[entityreference:base-tables][taxonomy_vocabulary][1] = 'vid'
+variables[entityreference:base-tables][user][0] = 'users'
+variables[entityreference:base-tables][user][1] = 'uid'
+variables[eu_cookie_compliance_en][popup_info][value] = '<h2>We use cookies on this site to enhance your user experience</h2><p>By clicking any link on this page you are giving your consent for us to set cookies.</p>'
+variables[eu_cookie_compliance_en][popup_info][format] = 'filtered_html'
+variables[eu_cookie_compliance_en][popup_agreed][value] = '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>'
+variables[eu_cookie_compliance_en][popup_agreed][format] = 'filtered_html'
+variables[eu_cookie_compliance_es][popup_enabled] = 1
+variables[eu_cookie_compliance_es][popup_clicking_confirmation] = 1
+variables[eu_cookie_compliance_es][popup_position] = 0
+variables[eu_cookie_compliance_es][popup_agree_button_message] = 'OK, I agree'
+variables[eu_cookie_compliance_es][popup_disagree_button_message] = 'No, give me more info'
+variables[eu_cookie_compliance_es][popup_info][value] = '<h2>
+    We use cookies on this site to enhance your user experience
+</h2>
+
+<p style="line-height: 20.7999992370605px;">
+    By clicking any link on this page you are giving your consent for us to set cookies.
+</p>
+'
+variables[eu_cookie_compliance_es][popup_info][format] = 'full_html'
+variables[eu_cookie_compliance_es][popup_agreed_enabled] = 0
+variables[eu_cookie_compliance_es][popup_hide_agreed] = 0
+variables[eu_cookie_compliance_es][popup_find_more_button_message] = 'Más info'
+variables[eu_cookie_compliance_es][popup_hide_button_message] = 'Ocultar'
+variables[eu_cookie_compliance_es][popup_agreed][value] = '<h2>
+    Thank you for accepting cookies
+</h2>
+
+<p style="line-height: 20.7999992370605px;">
+    You can now hide this message or find out more about cookies.
+</p>
+'
+variables[eu_cookie_compliance_es][popup_agreed][format] = 'full_html'
+variables[eu_cookie_compliance_es][popup_link] = 'politica-de-cookies'
+variables[eu_cookie_compliance_es][popup_link_new_window] = 1
+variables[eu_cookie_compliance_es][popup_height] = ''
+variables[eu_cookie_compliance_es][popup_width] = '100%'
+variables[eu_cookie_compliance_es][popup_delay] = '1'
+variables[eu_cookie_compliance_es][popup_bg_hex] = '0779BF'
+variables[eu_cookie_compliance_es][popup_text_hex] = 'ffffff'
+variables[eu_cookie_compliance_es][domains_option] = '1'
+variables[eu_cookie_compliance_es][domains_list] = ''
+variables[eu_cookie_compliance_es][exclude_paths] = ''
+variables[fences_default_classes] = 1
+variables[fences_default_markup] = 1
+variables[filter_fallback_format] = 'plain_text'
+variables[globalredirect_settings][canonical] = 1
+variables[image_toolkit] = 'gd'
+variables[imce_profiles][1][name] = 'User-1'
+variables[imce_profiles][1][usertab] = 1
+variables[imce_profiles][1][filesize] = 0
+variables[imce_profiles][1][quota] = 0
+variables[imce_profiles][1][tuquota] = 0
+variables[imce_profiles][1][extensions] = '*'
+variables[imce_profiles][1][dimensions] = '1200x1200'
+variables[imce_profiles][1][filenum] = 0
+variables[imce_profiles][1][directories][0][name] = '.'
+variables[imce_profiles][1][directories][0][subnav] = 1
+variables[imce_profiles][1][directories][0][browse] = 1
+variables[imce_profiles][1][directories][0][upload] = 1
+variables[imce_profiles][1][directories][0][thumb] = 1
+variables[imce_profiles][1][directories][0][delete] = 1
+variables[imce_profiles][1][directories][0][resize] = 1
+variables[imce_profiles][1][thumbnails][0][name] = 'Small'
+variables[imce_profiles][1][thumbnails][0][dimensions] = '90x90'
+variables[imce_profiles][1][thumbnails][0][prefix] = 'small_'
+variables[imce_profiles][1][thumbnails][0][suffix] = ''
+variables[imce_profiles][1][thumbnails][1][name] = 'Medium'
+variables[imce_profiles][1][thumbnails][1][dimensions] = '120x120'
+variables[imce_profiles][1][thumbnails][1][prefix] = 'medium_'
+variables[imce_profiles][1][thumbnails][1][suffix] = ''
+variables[imce_profiles][1][thumbnails][2][name] = 'Large'
+variables[imce_profiles][1][thumbnails][2][dimensions] = '180x180'
+variables[imce_profiles][1][thumbnails][2][prefix] = 'large_'
+variables[imce_profiles][1][thumbnails][2][suffix] = ''
+variables[imce_profiles][2][name] = 'Sample profile'
+variables[imce_profiles][2][usertab] = 1
+variables[imce_profiles][2][filesize] = 1
+variables[imce_profiles][2][quota] = 2
+variables[imce_profiles][2][tuquota] = 0
+variables[imce_profiles][2][extensions] = 'gif png jpg jpeg'
+variables[imce_profiles][2][dimensions] = '800x600'
+variables[imce_profiles][2][filenum] = 1
+variables[imce_profiles][2][directories][0][name] = 'u%uid'
+variables[imce_profiles][2][directories][0][subnav] = 0
+variables[imce_profiles][2][directories][0][browse] = 1
+variables[imce_profiles][2][directories][0][upload] = 1
+variables[imce_profiles][2][directories][0][thumb] = 1
+variables[imce_profiles][2][directories][0][delete] = 0
+variables[imce_profiles][2][directories][0][resize] = 0
+variables[imce_profiles][2][thumbnails][0][name] = 'Thumb'
+variables[imce_profiles][2][thumbnails][0][dimensions] = '90x90'
+variables[imce_profiles][2][thumbnails][0][prefix] = 'thumb_'
+variables[imce_profiles][2][thumbnails][0][suffix] = ''
+variables[jquery_update_compression_type] = 'none'
+variables[jquery_update_jquery_admin_version] = '1.8'
+variables[jquery_update_jquery_cdn] = 'none'
+variables[jquery_update_jquery_version] = '1.10'
+variables[language_count] = 1
+variables[language_negotiation_language][locale-url][callbacks][language] = 'locale_language_from_url'
+variables[language_negotiation_language][locale-url][callbacks][switcher] = 'locale_language_switcher_url'
+variables[language_negotiation_language][locale-url][callbacks][url_rewrite] = 'locale_language_url_rewrite_url'
+variables[language_negotiation_language][locale-url][file] = 'includes/locale.inc'
+variables[language_negotiation_language][language-default][callbacks][language] = 'language_from_default'
+variables[language_negotiation_language_content][locale-interface][callbacks][language] = 'locale_language_from_interface'
+variables[language_negotiation_language_content][locale-interface][file] = 'includes/locale.inc'
+variables[language_negotiation_language_url][locale-url][callbacks][language] = 'locale_language_from_url'
+variables[language_negotiation_language_url][locale-url][callbacks][switcher] = 'locale_language_switcher_url'
+variables[language_negotiation_language_url][locale-url][callbacks][url_rewrite] = 'locale_language_url_rewrite_url'
+variables[language_negotiation_language_url][locale-url][file] = 'includes/locale.inc'
+variables[language_negotiation_language_url][locale-url-fallback][callbacks][language] = 'locale_language_url_fallback'
+variables[language_negotiation_language_url][locale-url-fallback][file] = 'includes/locale.inc'
+variables[language_types][language] = true
+variables[language_types][language_content] = false
+variables[language_types][language_url] = false
+variables[locale_language_negotiation_url_part] = '0'
+variables[locale_language_providers_weight_language][locale-url] = '-8'
+variables[locale_language_providers_weight_language][locale-session] = '-6'
+variables[locale_language_providers_weight_language][locale-user] = '-4'
+variables[locale_language_providers_weight_language][locale-browser] = '-2'
+variables[locale_language_providers_weight_language][language-default] = '10'
+variables[metatag_has_revision_id] = true
+variables[metatag_schema_installed] = true
+variables[node_admin_theme] = '1'
+variables[node_options_page][0] = 'status'
+variables[pathauto_blog_pattern] = 'blogs/[user:name]'
+variables[pathauto_case] = '1'
+variables[pathauto_forum_pattern] = '[term:vocabulary]/[term:name]'
+variables[pathauto_ignore_words] = 'a, an, as, at, before, but, by, for, from, is, in, into, like, of, off, on, onto, per, since, than, the, this, that, to, up, via, with'
+variables[pathauto_max_component_length] = '100'
+variables[pathauto_max_length] = '100'
+variables[pathauto_node_pattern] = '[node:title]'
+variables[pathauto_punctuation_ampersand] = '0'
+variables[pathauto_punctuation_asterisk] = '0'
+variables[pathauto_punctuation_at] = '0'
+variables[pathauto_punctuation_backtick] = '0'
+variables[pathauto_punctuation_back_slash] = '0'
+variables[pathauto_punctuation_caret] = '0'
+variables[pathauto_punctuation_colon] = '0'
+variables[pathauto_punctuation_comma] = '0'
+variables[pathauto_punctuation_dollar] = '0'
+variables[pathauto_punctuation_double_quotes] = '0'
+variables[pathauto_punctuation_equal] = '0'
+variables[pathauto_punctuation_exclamation] = '0'
+variables[pathauto_punctuation_greater_than] = '0'
+variables[pathauto_punctuation_hash] = '0'
+variables[pathauto_punctuation_hyphen] = '1'
+variables[pathauto_punctuation_left_curly] = '0'
+variables[pathauto_punctuation_left_parenthesis] = '0'
+variables[pathauto_punctuation_left_square] = '0'
+variables[pathauto_punctuation_less_than] = '0'
+variables[pathauto_punctuation_percent] = '0'
+variables[pathauto_punctuation_period] = '0'
+variables[pathauto_punctuation_pipe] = '0'
+variables[pathauto_punctuation_plus] = '0'
+variables[pathauto_punctuation_question_mark] = '0'
+variables[pathauto_punctuation_quotes] = '0'
+variables[pathauto_punctuation_right_curly] = '0'
+variables[pathauto_punctuation_right_parenthesis] = '0'
+variables[pathauto_punctuation_right_square] = '0'
+variables[pathauto_punctuation_semicolon] = '0'
+variables[pathauto_punctuation_slash] = '0'
+variables[pathauto_punctuation_tilde] = '0'
+variables[pathauto_punctuation_underscore] = '0'
+variables[pathauto_reduce_ascii] = 1
+variables[pathauto_separator] = '-'
+variables[pathauto_taxonomy_term_pattern] = '[term:vocabulary]/[term:name]'
+variables[pathauto_transliterate] = 1
+variables[pathauto_update_action] = '2'
+variables[pathauto_user_pattern] = 'users/[user:name]'
+variables[theme_default] = 'bootstrap'
+variables[transliteration_file_lowercase] = 1
+variables[transliteration_file_uploads] = 1
+variables[transliteration_file_uploads_display_name] = 1
+variables[user_cancel_method] = 'user_cancel_block'
+variables[user_default_timezone] = '0'
+variables[user_email_verification] = 1
+variables[user_picture_dimensions] = '1024x1024'
+variables[user_picture_file_size] = '800'
+variables[user_picture_path] = 'pictures'
+variables[user_picture_style] = 'thumbnail'
+variables[user_register] = '1'
