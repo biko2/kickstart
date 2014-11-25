@@ -4,4 +4,4 @@ api = "2"
 
 projects[] = drupal
 ; include the d.o. profile base
-includes[] = "drupal-org.make"
+includes[] = "kickstart.make"

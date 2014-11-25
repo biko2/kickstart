@@ -1,3 +1,7 @@
+api = 2
+core = 7.x
+projects[] = drupal
+
 projects[kickstart][type] = "profile"
 projects[kickstart][download][type] = "local"
 projects[kickstart][download][source] = "."
