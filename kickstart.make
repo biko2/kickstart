@@ -63,6 +63,10 @@ libraries[ckeditor][destination] = libraries
 libraries[ckeditor][directory_name] = ckeditor
 ;libraries[ckeditor][patch][] = "http://drupal.org/files/1337004-ckeditor-remove-samples-3.patch"
 
+libraries[simplehtmldom][download][type] = "file"
+libraries[simplehtmldom][download][url] = "http://internode.dl.sourceforge.net/project/simplehtmldom/simplehtmldom/1.5/simplehtmldom_1_5.zip"
+libraries[simplehtmldom][destination] = libraries
+
 ; Advanced authoring
 projects[cdn][subdir] = contrib
 projects[context][subdir] = contrib
