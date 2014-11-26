@@ -45,22 +45,12 @@ function kickstart_install() {
       'cache' => -1,
     ),
     array(
-      'module' => 'user',
-      'delta' => 'login',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => 0,
-      'region' => 'sidebar_first',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
       'module' => 'system',
       'delta' => 'help',
       'theme' => $default_theme,
       'status' => 1,
       'weight' => -10,
-      'region' => 'content',
+      'region' => 'help',
       'pages' => '',
       'cache' => -1,
     ),
@@ -95,17 +85,8 @@ function kickstart_install() {
   }
   $query->execute();
 
-  // From shortcut.install, add shortcuts to the default set on install
-  $shortcut_set = shortcut_set_load(SHORTCUT_DEFAULT_SET_NAME);
-  $shortcut_set->links = NULL;
-  $shortcut_set->links = array(
-    array(
-      'link_path' => 'admin/appearance/settings',
-      'link_title' => st('Theme'),
-      'weight' => -17,
-    ),
-  );
-  shortcut_set_save($shortcut_set);// Create a default role for site administrators, with all available permissions assigned.
+
+  // Create a default role for site administrators, with all available permissions assigned.
   $admin_role = new stdClass();
   $admin_role->name = 'administrator';
   $admin_role->weight = 10;
@@ -243,18 +224,6 @@ function kickstart_install_tasks_alter(&$tasks, $install_state) {
   $tasks['install_select_locale']['display'] = FALSE;
   $tasks['install_finished']['display'] = FALSE;
   $tasks['install_select_locale']['type'] = 'normal';
-
-  // // The "Welcome" screen needs to come after the first two steps
-  // // (profile and language selection), despite the fact that they are disabled.
-  // $new_task['install_welcome'] = array(
-  //   'display' => TRUE,
-  //   'display_name' => st('Welcome'),
-  //   'type' => 'form',
-  //   'run' => isset($install_state['parameters']['welcome']) ? INSTALL_TASK_SKIP : INSTALL_TASK_RUN_IF_REACHED,
-  // );
-  // $old_tasks = $tasks;
-  // $tasks = array_slice($old_tasks, 0, 2) + $new_task + array_slice($old_tasks, 2);
-
 
   $needs_translations = count($install_state['locales']) > 1 && !empty($install_state['parameters']['locale']) && $install_state['parameters']['locale'] != 'en';
 
