@@ -42,9 +42,6 @@ projects[field_group][subdir] = contrib
 projects[devel][subdir] = contrib
 projects[devel_themer][subdir] = contrib
 projects[simplehtmldom][subdir] = contrib
-libraries[simplehtmldom][download][type] = "file"
-libraries[simplehtmldom][download][url] = "http://internode.dl.sourceforge.net/project/simplehtmldom/simplehtmldom/1.5/simplehtmldom_1_5.zip"
-libraries[simplehtmldom][destination] = libraries
 
 ; SEO
 projects[page_title][subdir] = contrib
