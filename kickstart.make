@@ -2,13 +2,6 @@ api = 2
 core = 7.x
 projects[] = drupal
 
-projects[kickstart][type] = "profile"
-projects[kickstart][download][type] = "local"
-projects[kickstart][download][source] = "."
-;projects[kickstart][download][type] = "git"
-;projects[kickstart][download][url] = "https://github.com/edwardcrompton/kickstart.git"
-;projects[kickstart][download][branch] = "master"
-
 ; Base
 projects[module_filter][subdir] = contrib
 projects[jquery_update][subdir] = contrib
@@ -27,7 +20,6 @@ projects[libraries][subdir] = contrib
 projects[views][subdir] = contrib
 projects[views_bulk_operations][subdir] = contrib
 projects[admin_menu][subdir] = contrib
-projects[l10n_update][subdir] = contrib
 projects[strongarm][subdir] = contrib
 projects[transliteration][subdir] = contrib
 projects[profiler_builder][subdir] = contrib
@@ -77,10 +69,12 @@ projects[context][subdir] = contrib
 projects[panels][subdir] = contrib
 projects[webform][subdir] = contrib
 
+;i18n
 projects[i18n][subdir] = contrib
+projects[l10n_update][subdir] = contrib
+
 ;projects[workbench][subdir] = contrib
 ;projects[workbench_moderation][subdir] = contrib
-;projects[link_css][subdir] = contrib
 ;projects[seo_checklist][subdir] = contrib
 ;projects[save_draft][subdir] = contrib
 ;projects[view_unpublished][subdir] = contrib
