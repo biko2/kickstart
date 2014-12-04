@@ -7,6 +7,11 @@ projects[kickstart][download][type] = "git"
 projects[kickstart][download][url] = "https://github.com/biko2/kickstart.git"
 projects[kickstart][download][branch] = "master"
 
+projects[frontkick][type] = "theme"
+projects[frontkick][download][type] = "git"
+projects[frontkick][download][url] = "https://github.com/biko2/frontkick.git"
+projects[frontkick][download][branch] = "master"
+
 libraries[simplehtmldom][download][type] = "file"
 libraries[simplehtmldom][download][url] = "http://internode.dl.sourceforge.net/project/simplehtmldom/simplehtmldom/1.5/simplehtmldom_1_5.zip"
 libraries[simplehtmldom][destination] = libraries
