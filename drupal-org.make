@@ -21,7 +21,6 @@ projects[libraries][subdir] = contrib
 projects[views][subdir] = contrib
 projects[views_bulk_operations][subdir] = contrib
 projects[admin_menu][subdir] = contrib
-projects[admin_menu][patch][] = "https://www.drupal.org/files/issues/admin_menu-remove-ie6-support-1892074-5.patch"
 projects[strongarm][subdir] = contrib
 projects[transliteration][subdir] = contrib
 projects[profiler_builder][subdir] = contrib
