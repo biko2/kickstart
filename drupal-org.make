@@ -43,6 +43,7 @@ projects[field_group][subdir] = contrib
 projects[devel][subdir] = contrib
 projects[devel_themer][subdir] = contrib
 projects[simplehtmldom][subdir] = contrib
+projects[simplehtmldom][version] = 1.12
 
 ; SEO
 projects[page_title][subdir] = contrib
