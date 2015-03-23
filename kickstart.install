@@ -227,17 +227,17 @@ function kickstart_install_tasks_alter(&$tasks, $install_state) {
   $tasks['install_finished']['display'] = FALSE;
   $tasks['install_select_locale']['type'] = 'normal';
 
-  $needs_translations = count($install_state['locales']) > 1 && !empty($install_state['parameters']['locale']) && $install_state['parameters']['locale'] != 'en';
+  // $needs_translations = count($install_state['locales']) > 1 && !empty($install_state['parameters']['locale']) && $install_state['parameters']['locale'] != 'en';
 
-  $new_task['_kickstart_import_translation'] = array(
-    'display_name' => st('Set up translations'),
-    'display' => $needs_translations,
-    'run' => $needs_translations ? INSTALL_TASK_RUN_IF_NOT_COMPLETED : INSTALL_TASK_SKIP,
-    'type' => 'batch',
-  );
+  // $new_task['_kickstart_import_translation'] = array(
+  //   'display_name' => st('Set up translations'),
+  //   'display' => $needs_translations,
+  //   'run' => $needs_translations ? INSTALL_TASK_RUN_IF_NOT_COMPLETED : INSTALL_TASK_SKIP,
+  //   'type' => 'batch',
+  // );
 
-  $old_tasks = $tasks;
-  $tasks = array_slice($old_tasks, 0, 9) + $new_task + array_slice($old_tasks, 9);
+  // $old_tasks = $tasks;
+  // $tasks = array_slice($old_tasks, 0, 9) + $new_task + array_slice($old_tasks, 9);
 }
 
 /**
