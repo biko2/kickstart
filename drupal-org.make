@@ -74,6 +74,7 @@ projects[webform][subdir] = contrib
 ;i18n
 projects[i18n][subdir] = contrib
 projects[l10n_update][subdir] = contrib
+projects[variable][subdir] = contrib
 
 ;projects[workbench][subdir] = contrib
 ;projects[workbench_moderation][subdir] = contrib
