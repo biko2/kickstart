@@ -1,4 +1,5 @@
-Kickstart es una distribución Drupal para arrancar proyectos de forma rápida, evitando los pasos repetitivos de instalación y configuración iniciales.
+Kickstart es una distribución Drupal para arrancar proyectos de forma rápida, 
+evitando los pasos repetitivos de instalación y configuración iniciales.
 
 Instalación
 -----------
