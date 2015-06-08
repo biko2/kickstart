@@ -31,6 +31,7 @@ dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = update
 dependencies[] = user
+dependencies[] = toolbar  ;esta si no se usa el admin_menu
 
 ; Administration
 ;dependencies[] = admin_menu
