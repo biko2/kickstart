@@ -3,6 +3,9 @@
 # Ignore configuration files that may contain sensitive information.
 docroot/sites/*/settings*.php
 *.local.php
+*local_conf.php
+*local.settings.inc
+
 
 # User Generated Content #
 ##########################
@@ -51,4 +54,15 @@ Thumbs.db
 
 # IDEs #
 ########
-../../.idea
+.idea
+
+# Vim generated files #
+######################
+*.un~
+
+# SASS #
+##########
+.sass-cache
+
+##GRUNT y NPM
+node_modules
