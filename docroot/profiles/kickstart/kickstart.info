@@ -6,12 +6,6 @@ core = "7.x"
 ; ----------
 ; Dependencias
 ; ----------
-; Administration
-dependencies[] = admin_menu
-dependencies[] = admin_menu_toolbar
-dependencies[] = module_filter
-; Chaos tool suite
-dependencies[] = ctools
 ; Core
 dependencies[] = block
 dependencies[] = contextual
@@ -37,8 +31,16 @@ dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = update
 dependencies[] = user
+
+; Administration
+;dependencies[] = admin_menu
+;dependencies[] = admin_menu_toolbar
+dependencies[] = module_filter
+; Chaos tool suite
+dependencies[] = ctools
+
 ; Development
-dependencies[] = profiler_builder
+;dependencies[] = profiler_builder
 ; Fields
 dependencies[] = entityreference
 dependencies[] = fences
@@ -51,18 +53,18 @@ dependencies[] = imce
 ; Multilingual
 dependencies[] = l10n_update
 ; Other
-dependencies[] = block_class
+;dependencies[] = block_class
 dependencies[] = clone
 dependencies[] = diff
 dependencies[] = entity
 dependencies[] = entity_token
 dependencies[] = eu_cookie_compliance
 dependencies[] = libraries
-dependencies[] = menu_attributes
+;dependencies[] = menu_attributes
 dependencies[] = pathauto
 dependencies[] = pathauto_persist
 dependencies[] = redirect
-dependencies[] = simplehtmldom
+;dependencies[] = simplehtmldom
 dependencies[] = strongarm
 dependencies[] = token
 dependencies[] = transliteration
@@ -72,14 +74,14 @@ dependencies[] = globalredirect
 dependencies[] = metatag
 dependencies[] = page_title
 ; Statistics
-dependencies[] = googleanalytics
+;dependencies[] = googleanalytics
 ; User interface
 dependencies[] = ckeditor
 dependencies[] = jquery_update
 dependencies[] = simplify
 ; Views
 dependencies[] = views
-dependencies[] = views_bulk_operations
+;dependencies[] = views_bulk_operations
 dependencies[] = views_ui
 ; Features
 dependencies[] = features
