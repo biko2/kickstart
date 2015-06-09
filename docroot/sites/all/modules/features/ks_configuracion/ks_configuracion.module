@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Configuracion feature.
+ */
+
+include_once 'ks_configuracion.features.inc';
