@@ -35,18 +35,18 @@ function ks_configuracion_i18n_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_default';
-  $strongarm->value = array(
+  $strongarm->value = (object) array(
     'language' => 'es',
     'name' => 'Spanish',
     'native' => 'Español',
-    'direction' => 0,
-    'enabled' => 1,
-    'plurals' => 2,
+    'direction' => '0',
+    'enabled' => '1',
+    'plurals' => '2',
     'formula' => '($n!=1)',
     'domain' => '',
     'prefix' => '',
-    'weight' => 0,
-    'javascript' => 'zCS555vkLcIMFq3EKAK8VY5UXrqSi8S04C-C3zwPx1c',
+    'weight' => '0',
+    'javascript' => '59Vupey6HevTqw7MwZoQDF7M_kP-soriHcSkKeXZO6I',
   );
   $export['language_default'] = $strongarm;
 
