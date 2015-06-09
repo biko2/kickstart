@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Configuracion i18n feature.
+ */
+
+include_once 'ks_configuracion_i18n.features.inc';

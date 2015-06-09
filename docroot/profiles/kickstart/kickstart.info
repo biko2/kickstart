@@ -90,3 +90,4 @@ dependencies[] = features
 
 ; Features propias
 dependencies[] = ks_configuracion
+dependencies[] = ks_configuracion_i18n
