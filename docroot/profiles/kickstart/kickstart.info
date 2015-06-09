@@ -87,3 +87,6 @@ dependencies[] = views
 dependencies[] = views_ui
 ; Features
 dependencies[] = features
+
+; Features propias
+dependencies[] = ks_configuracion

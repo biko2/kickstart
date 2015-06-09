@@ -91,3 +91,4 @@ projects[frontkick][download][type] = "git"
 projects[frontkick][download][url] = "https://github.com/biko2/frontkick.git"
 projects[frontkick][download][branch] = "master"
 projects[frontkick][subdir] = ""
+

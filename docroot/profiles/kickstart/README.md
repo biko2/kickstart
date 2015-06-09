@@ -4,18 +4,10 @@ evitando los pasos repetitivos de instalación y configuración iniciales.
 Instalación
 -----------
 
-Descarga el fichero kickstart.make.bootstrap
-Ejecuta el comando:
-
-drush make --prepare-install kickstart.make.bootstrap <destino>
-
-
-
-## Install Profile Instructions
-```
 $ cd docroot
 $ drush make kickstart.make
-```
 
-Then install Drupal, selecting the "Servo" profile. This will give you
+Despues instalas Drupal, seleccionando el profile "Kickstart". 
+
+¡Eso es todo amigos!
 
