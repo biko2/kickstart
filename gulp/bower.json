@@ -12,7 +12,7 @@
   "overrides": {
     "bootstrap-sass-official": {
       "main": [
-        "../docroot/sites/all/themes/frontkick/assets/**/*"
+        "assets/**/*"
       ]
     },
     "jquery": {
