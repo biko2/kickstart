@@ -17,6 +17,7 @@ A revisar manualmente:
  - Confirmar que el idioma por defecto se ha configurado el de castellano.
 
  - Una vez instalado, hacer un update de traducciones con drush: 
+    drush l10n-update-refresh
     drush l10n-update
 
  - al usar el theme de frontkick, hay que instalarlo según pone le readme del mismo para el gulp. Si da guerra porque da
