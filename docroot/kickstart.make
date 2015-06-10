@@ -31,8 +31,8 @@ projects[] = node_clone
 projects[] = simplify
 projects[] = imce
 projects[] = field_group
-;projects[] = workbench
-;projects[] = workbench_moderation
+projects[] = workbench
+projects[] = workbench_moderation
 
 ; Libraries ckeditor
 libraries[ckeditor][download][type] = get
