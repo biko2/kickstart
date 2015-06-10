@@ -89,6 +89,6 @@ projects[] = bootstrap
 projects[frontkick][type] = "theme"
 projects[frontkick][download][type] = "git"
 projects[frontkick][download][url] = "https://github.com/biko2/frontkick.git"
-projects[frontkick][download][branch] = "master"
+projects[frontkick][download][branch] = "v1.1"
 projects[frontkick][subdir] = ""
 
