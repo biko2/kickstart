@@ -1,0 +1,17 @@
+{
+  "styles": {
+    "srcPath": "../docroot/sites/all/themes/frontkick/scss",
+    "srcFiles": "../docroot/sites/all/themes/frontkick/scss/**/*",
+    "srcMainFiles": ["scss/*.scss", "!scss/_*.scss"],
+    "dest": "../docroot/sites/all/themes/frontkick/css"
+  },
+
+  "styleguide": {
+    "srcFiles": "../docroot/sites/all/themes/frontkick/doc_assets/**/*"
+  },
+
+  "bower": {
+    "src": "../docroot/sites/all/themes/frontkick/bower_components",
+    "dest": "../docroot/sites/all/themes/frontkick/vendor"
+  } 
+}

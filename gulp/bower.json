@@ -1,0 +1,22 @@
+{
+  "name": "frontkick",
+  "private": true,
+  "ignore": [
+    "../docroot/sites/all/themes/frontkick/**/.*",
+    "../docroot/sites/all/themes/frontkick/node_modules",
+    "../docroot/sites/all/themes/frontkick/bower_components"
+  ],
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.1"
+  },
+  "overrides": {
+    "bootstrap-sass-official": {
+      "main": [
+        "../docroot/sites/all/themes/frontkick/assets/**/*"
+      ]
+    },
+    "jquery": {
+      "ignore": true
+    }
+  }
+}
