@@ -85,20 +85,6 @@ function kickstart_install() {
   }
   $query->execute();
 
-
-  // Create a default role for site administrators, with all available permissions assigned.
-  $admin_role = new stdClass();
-  $admin_role->name = 'administrator';
-  $admin_role->weight = 10;
-  user_role_save($admin_role);
-  user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
-  // Set this as the administrator role.
-  variable_set('user_admin_role', $admin_role->rid);
-
-  // Assign user 1 the "administrator" role.
-  db_insert('users_roles')
-    ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
-    ->execute();
   // Update the menu router information.
   menu_rebuild();
   // revert features to ensure they are all installed
@@ -113,73 +99,73 @@ function kickstart_install() {
 }
 
 function _kickstart_add_text_formats() {
-    // Add text formats.
-    $filtered_html_format = array(
-      'format' => 'filtered_html',
-      'name' => 'Filtered HTML',
-      'weight' => 0,
-      'filters' => array(
-        // URL filter.
-        'filter_url' => array(
-          'weight' => 0,
-          'status' => 1,
-        ),
-        // HTML filter.
-        'filter_html' => array(
-          'weight' => 1,
-          'status' => 1,
-          'settings' => array(
-            'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <h1> <h2> <h3> <h4> <h5> <p> <span> <div> <img>'
+  // Add text formats.
+  $filtered_html_format = array(
+    'format' => 'filtered_html',
+    'name' => 'Filtered HTML',
+    'weight' => 0,
+    'filters' => array(
+      // URL filter.
+      'filter_url' => array(
+        'weight' => 0,
+        'status' => 1,
+      ),
+      // HTML filter.
+      'filter_html' => array(
+        'weight' => 1,
+        'status' => 1,
+        'settings' => array(
+          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <h1> <h2> <h3> <h4> <h5> <p> <span> <div> <img>'
 
-          ),
-        ),
-        // Line break filter.
-        'filter_autop' => array(
-          'weight' => 2,
-          'status' => 1,
-        ),
-        // HTML corrector filter.
-        'filter_htmlcorrector' => array(
-          'weight' => 10,
-          'status' => 1,
-        ),
-        'pathologic' => array(
-          'weight' => 15,
-          'status' => 1,
         ),
       ),
-    );
-    $filtered_html_format = (object) $filtered_html_format;
-    filter_format_save($filtered_html_format);
-
-    $full_html_format = array(
-      'format' => 'full_html',
-      'name' => 'Full HTML',
-      'weight' => 1,
-      'filters' => array(
-        // URL filter.
-        'filter_url' => array(
-          'weight' => 0,
-          'status' => 1,
-        ),
-        // Line break filter.
-        'filter_autop' => array(
-          'weight' => 1,
-          'status' => 1,
-        ),
-        // HTML corrector filter.
-        'filter_htmlcorrector' => array(
-          'weight' => 10,
-          'status' => 1,
-        ),
-        'pathologic' => array(
-          'weight' => 15,
-          'status' => 1,
-        ),
+      // Line break filter.
+      'filter_autop' => array(
+        'weight' => 2,
+        'status' => 1,
       ),
-    );
-    $full_html_format = (object) $full_html_format;
-    filter_format_save($full_html_format);
+      // HTML corrector filter.
+      'filter_htmlcorrector' => array(
+        'weight' => 10,
+        'status' => 1,
+      ),
+      'pathologic' => array(
+        'weight' => 15,
+        'status' => 1,
+      ),
+    ),
+  );
+  $filtered_html_format = (object) $filtered_html_format;
+  filter_format_save($filtered_html_format);
+
+  $full_html_format = array(
+    'format' => 'full_html',
+    'name' => 'Full HTML',
+    'weight' => 1,
+    'filters' => array(
+      // URL filter.
+      'filter_url' => array(
+        'weight' => 0,
+        'status' => 1,
+      ),
+      // Line break filter.
+      'filter_autop' => array(
+        'weight' => 1,
+        'status' => 1,
+      ),
+      // HTML corrector filter.
+      'filter_htmlcorrector' => array(
+        'weight' => 10,
+        'status' => 1,
+      ),
+      'pathologic' => array(
+        'weight' => 15,
+        'status' => 1,
+      ),
+    ),
+  );
+  $full_html_format = (object) $full_html_format;
+  filter_format_save($full_html_format);
 }
 
 /**
@@ -199,15 +185,10 @@ function kickstart_form_install_configure_form_alter(&$form, $form_state) {
   // Update notifications.
   $form['update_notifications']['update_status_module']['#default_value'] = array(1, 2);
 
-    //clean messages
-    drupal_get_messages();
-  }
-
-
-function kickstart_profile_details() {
-  $details['language'] = "es";
-  return $details;
+  //clean messages
+  drupal_get_messages();
 }
+
 
 /**
  * Implements hook_install_tasks_alter().
@@ -250,10 +231,10 @@ function _kickstart_install_finished(&$install_state) {
 
   // Install profiles are always loaded last
   db_update('system')
-      ->fields(array('weight' => 1000))
-      ->condition('type', 'module')
-      ->condition('name', drupal_get_profile())
-      ->execute();
+    ->fields(array('weight' => 1000))
+    ->condition('type', 'module')
+    ->condition('name', drupal_get_profile())
+    ->execute();
 
   // Cache a fully-built schema.
   drupal_get_schema(NULL, TRUE);
@@ -276,8 +257,8 @@ function _kickstart_install_finished(&$install_state) {
     drupal_get_messages('ok', TRUE);
 
     drupal_set_message(st('@drupal installation complete', array('@drupal' => drupal_install_profile_distribution_name()
-            )
-        ));
+      )
+    ));
 
     // If we don't install drupal using Drush, redirect the user to the front
     // page.
